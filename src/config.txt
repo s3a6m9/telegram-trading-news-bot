@@ -1,0 +1,9 @@
+# To leave comments start the line with '#'.
+# Blank lines are skipped.
+
+# Variables are separated by a new line and their value is assigned using '='
+Bot Token = <TOKEN>
+
+
+cryptopanic = enabled
+# forexfactory = disabled (coming soon)
