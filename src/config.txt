@@ -1,9 +1,11 @@
 # To leave comments start the line with '#'.
 # Blank lines are skipped.
 
+# If you have any issues delete the bot.dat file in the bot directory.
+
+
 # Variables are separated by a new line and their value is assigned using '='
 Bot Token = <TOKEN>
 
-
 cryptopanic = enabled
-# forexfactory = disabled (coming soon)
+# forexfactory = enabled
