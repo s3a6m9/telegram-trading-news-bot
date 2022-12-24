@@ -5,3 +5,7 @@ Websites used by the bot:
 - https://www.forexfactory.com/
 - https://cryptopanic.com/
 - (more coming in the future)
+
+* In progress * 
+
+https://t.me/trading_news_updates
