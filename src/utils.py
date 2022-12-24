@@ -2,7 +2,7 @@ import os
 
 WORKING_PATH = os.path.abspath(os.path.dirname(__file__))
 DEFAULT_CONFIG_PATH = os.path.join(WORKING_PATH, "config.txt")
-BOT_DATA_PATH = os.path.join(os.path.join(WORKING_PATH, "bot"), "bot.dat")
+BOT_DATA_PATH = os.path.join(os.path.join(WORKING_PATH, "bot_data"), "bot.dat")
 
 
 def parse_config(config_path):
