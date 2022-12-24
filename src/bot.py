@@ -6,7 +6,7 @@ import telebot
 from sources import cryptopanic
 
 config = parse_config(DEFAULT_CONFIG_PATH)
-bot = telebot.TeleBot(config["bot token"], parse_mode="html", threaded=True)
+bot = telebot.TeleBot(config["bot token"], parse_mode="html")
 
 
 bot_dat_separator = "::"
