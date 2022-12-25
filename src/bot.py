@@ -98,7 +98,7 @@ while True:
 
         post_queue = []
         
-        sleep(6)
+        sleep(30) # crashes after few hours if below <15
 
     except KeyboardInterrupt:
         print("\nKeyboardInterrupt, quitting")
