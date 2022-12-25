@@ -23,7 +23,7 @@ latest_cryptopanic_date = None
 if not file_exists(BOT_DATA_PATH):
     create_file(BOT_DATA_PATH)
 else:
-    bot_dat = read_file(BOT_DATA_PATH).split(bot_dat_separator)
+    bot_dat = [i.strip() for i in read_file(BOT_DATA_PATH).split(bot_dat_separator)]
     if len(bot_dat) >= 2:
         channel_id = bot_dat[0]
         channel_title = bot_dat[1]
