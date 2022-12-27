@@ -98,7 +98,7 @@ while True:
 
         post_queue = []
         
-        sleep(180) # crashes after few hours if below <15
+        sleep(300) # Sweet spot is between 180 and 300, crashes due to rate limit at 180 second request interval (for cryptopanic)
 
     except KeyboardInterrupt:
         print("\nKeyboardInterrupt, quitting")
