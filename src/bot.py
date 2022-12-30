@@ -98,7 +98,7 @@ while True:
 
         post_queue = []
         
-        sleep(700) # Crashed between 12-24 hours after running on 500s
+        sleep(700) # Cryptopanic interval limit is between 500-700 seconds
 
     except KeyboardInterrupt:
         print("\nKeyboardInterrupt, quitting")
