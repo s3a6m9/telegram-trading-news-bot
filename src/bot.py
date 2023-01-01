@@ -2,6 +2,7 @@ from utils import *
 from time import sleep
 import sys
 import telebot
+from requests.exceptions import ConnectionError
 
 from sources import cryptopanic
 
@@ -77,28 +78,36 @@ post_queue = []
 while True:
     try:
         if "cryptopanic" in enabled:
-            temp_crp = cryptopanic.get_new_rss(latest_cryptopanic_date)
+            try:
+                temp_crp = cryptopanic.get_new_rss(latest_cryptopanic_date)
+                if len(temp_crp) > 0:
+                    crp = [f"Source: cryptopanic\nDate: {item[0]}\nPost: <a href='{item[2]}\'>{item[1]}</a>" for item in temp_crp]
+                    latest_cryptopanic_date = temp_crp[-1][0]
+                    temp_bot_dat = read_file(BOT_DATA_PATH).split(bot_dat_separator)
+                    if len(temp_bot_dat) > 2:
+                        temp_bot_dat[2] = latest_cryptopanic_date
+                    else:
+                        temp_bot_dat.append(latest_cryptopanic_date)
+                    temp_bot_dat = bot_dat_separator.join(temp_bot_dat)
+                    write_file(BOT_DATA_PATH, temp_bot_dat)
+                    post_queue += crp
+            except ConnectionError:
+                print("\n\n\n\t ERROR, CRYPTOPANIC REQUESTS LIMIT REACHED")
+                sleep(10)
 
-            if len(temp_crp) > 0:
-                crp = [f"Source: cryptopanic\nDate: {item[0]}\nPost: <a href='{item[2]}\'>{item[1]}</a>" for item in temp_crp]
-                latest_cryptopanic_date = temp_crp[-1][0]
-                temp_bot_dat = read_file(BOT_DATA_PATH).split(bot_dat_separator)
-                if len(temp_bot_dat) > 2:
-                    temp_bot_dat[2] = latest_cryptopanic_date
-                else:
-                    temp_bot_dat.append(latest_cryptopanic_date)
-                temp_bot_dat = bot_dat_separator.join(temp_bot_dat)
-                write_file(BOT_DATA_PATH, temp_bot_dat)
-                post_queue += crp
+
+        if "forexfactory" in enabled:
+            pass
+
 
         for post in post_queue:
             bot.send_message(channel_id, post, disable_web_page_preview=True)
-            print(f"Posted: {post}")
+            print(f"\nPosted: {post}")
             sleep(4)  # don't overflow rate limit
 
         post_queue = []
         
-        sleep(700) # Cryptopanic interval limit is between 500-700 seconds
+        sleep(700)
 
     except KeyboardInterrupt:
         print("\nKeyboardInterrupt, quitting")
